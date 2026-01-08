@@ -173,4 +173,6 @@ Private - All rights reserved © 2025 Prime Eagle
 
 ---
 
+**Deployed to Vercel** - Triggering production deployment
+
 Built with ❤️ for Prime Eagle Corporate Apparel
