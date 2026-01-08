@@ -1,45 +1,17 @@
 import { Link } from 'react-router-dom'
-import { 
-  ShoppingBag, 
-  Truck, 
-  Award, 
-  Users, 
-  Shirt, 
-  Star, 
-  ArrowRight, 
-  Check, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Shield, 
-  Zap, 
-  TrendingUp, 
-  Package, 
-  Clock, 
-  Target, 
-  MessageCircle 
-} from 'lucide-react'
+import { ShoppingBag, Truck, Award, Users, Shirt, Star, ArrowRight, Check, Phone, Mail, MapPin, Shield, Zap, TrendingUp, Package, Clock, Target, MessageCircle } from 'lucide-react'
 
 export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white">
       {/* Modern Navigation */}
-      <header>
-        <nav className="bg-black border-b border-white/10 sticky top-0 z-50 backdrop-blur-sm">
+      <nav className="bg-black border-b border-white/10 sticky top-0 z-50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="bg-white p-1.5 sm:p-2 rounded-lg overflow-hidden">
-                <img 
-                  src="/logo.jpeg" 
-                  alt="Prime Eagle Logo" 
-                  className="h-6 w-6 sm:h-8 sm:w-8 object-cover"
-                  width="32"
-                  height="32"
-                  loading="eager"
-                  fetchpriority="high"
-                />
+                <img src="/logo.jpeg" alt="Prime Eagle" className="h-6 w-6 sm:h-8 sm:w-8 object-cover" />
               </div>
               <div>
                 <span className="text-base sm:text-xl font-extrabold text-white tracking-tight">Prime Eagle</span>
@@ -62,10 +34,8 @@ export default function LandingPage() {
           </div>
         </div>
       </nav>
-      </header>
 
       {/* Hero Section - Startup Style */}
-      <main>
       <section className="relative bg-black py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
         {/* Dot Pattern Background */}
         <div className="absolute inset-0 opacity-[0.03]">
@@ -111,13 +81,8 @@ export default function LandingPage() {
               <div className="absolute inset-0 border-2 border-white/10 rounded-xl sm:rounded-2xl overflow-hidden">
                 <img 
                   src="/images/hero/home section.png" 
-                  alt="Premium corporate uniforms and custom apparel by Prime Eagle" 
+                  alt="Prime Eagle Products" 
                   className="w-full h-full object-cover"
-                  width="1200"
-                  height="800"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
                 />
               </div>
             </div>
@@ -196,10 +161,6 @@ export default function LandingPage() {
                   src="/images/products/polo-t-shirt.png" 
                   alt="Corporate Polo T-Shirts"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-black">
                   BESTSELLER
@@ -237,10 +198,6 @@ export default function LandingPage() {
                   src="/images/products/hoodies.jpg" 
                   alt="Corporate Hoodies"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -275,10 +232,6 @@ export default function LandingPage() {
                   src="/images/products/lowerpants.png" 
                   alt="Track Pants"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -313,10 +266,6 @@ export default function LandingPage() {
                   src="/images/products/tshirt2.png" 
                   alt="Round Neck T-Shirts"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div className="absolute top-4 right-4 bg-green-500 px-3 py-1 rounded-full text-xs font-bold text-white">
                   NEW
@@ -354,10 +303,6 @@ export default function LandingPage() {
                   src="/images/products/p-hoodie.png" 
                   alt="Jackets"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -392,10 +337,6 @@ export default function LandingPage() {
                   src="/images/products/lower2.png" 
                   alt="Sports Jersey"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -430,10 +371,6 @@ export default function LandingPage() {
                   src="/images/products/lowerpants.png" 
                   alt="Formal Pants"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -468,10 +405,6 @@ export default function LandingPage() {
                   src="/images/products/tshirt3.png" 
                   alt="Sweatshirts"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
               <div className="p-8">
@@ -506,10 +439,6 @@ export default function LandingPage() {
                   src="/images/products/p-hoodie2.png" 
                   alt="Safety Vests"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  width="400"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div className="absolute top-4 right-4 bg-yellow-400 px-3 py-1 rounded-full text-xs font-bold text-black">
                   SAFETY
@@ -932,7 +861,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-      </main>
     </div>
   )
 }
