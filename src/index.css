@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,10 +7,14 @@
 @layer base {
   body {
     @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-optical-sizing: auto;
   }
   
   * {
     @apply scroll-smooth;
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-optical-sizing: auto;
   }
 }
 
