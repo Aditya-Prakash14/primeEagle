@@ -823,7 +823,7 @@ export default function LandingPage() {
                 </a>
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-sm">sales@primeeagle.com</span>
+                  <span className="text-sm">shop@primeeagle.com</span>
                 </div>
               </div>
             </div>
