@@ -19,13 +19,19 @@ export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
+    if (!supabase) {
+      console.error('Supabase is not initialised. Check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your .env file.')
+      setLoading(false)
+      return
+    }
+
     // Check active session
     const initializeAuth = async () => {
       try {
         const { data: { session: currentSession } } = await supabase.auth.getSession()
         setSession(currentSession)
         setUser(currentSession?.user ?? null)
-        
+
         if (currentSession?.user) {
           await fetchProfile(currentSession.user.id)
         }
@@ -44,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         console.log('Auth event:', event)
         setSession(session)
         setUser(session?.user ?? null)
-        
+
         if (session?.user) {
           await fetchProfile(session.user.id)
         } else {
@@ -112,6 +118,22 @@ export const AuthProvider = ({ children }) => {
     return data
   }
 
+  const signInWithOAuth = async (provider) => {
+    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file.')
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`,
+        queryParams:
+          provider === 'google'
+            ? { access_type: 'offline', prompt: 'consent' }
+            : undefined
+      }
+    })
+    if (error) throw error
+    return data
+  }
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
     if (error) throw error
@@ -148,6 +170,7 @@ export const AuthProvider = ({ children }) => {
     signIn,
     signUp,
     signOut,
+    signInWithOAuth,
     updateProfile,
     refreshProfile: () => user && fetchProfile(user.id)
   }
