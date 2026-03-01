@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  VERCEL_TOKEN: vcp_0qYLYnLpG2fPOsadJOlJ3byxyEZH2BpZpeVvP6dtAY
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   VERCEL_ORG_ID: ap312038-gmailcoms-projects
 
 jobs:
