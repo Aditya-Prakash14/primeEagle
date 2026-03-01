@@ -1,13 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Mail, Lock, Shirt, ArrowLeft, AlertCircle } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { signIn, signInWithOAuth, user, loading: authLoading } = useAuth()
   const [formData, setFormData] = useState({
-    email: '',
+    email: location.state?.email || '',
     password: ''
   })
   const [loading, setLoading] = useState(false)

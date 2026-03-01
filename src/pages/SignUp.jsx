@@ -45,7 +45,18 @@ export default function SignUp() {
         setTimeout(() => navigate('/login'), 4000)
       }
     } catch (error) {
-      setError(error.message || 'Failed to create account. Please try again.')
+      const msg = error.message || ''
+      // Supabase returns this when the email is already registered
+      if (
+        msg.toLowerCase().includes('already registered') ||
+        msg.toLowerCase().includes('user already exists') ||
+        msg.toLowerCase().includes('already been registered')
+      ) {
+        setSuccess('An account with this email already exists. Redirecting to login...')
+        setTimeout(() => navigate('/login', { state: { email: formData.email } }), 2000)
+      } else {
+        setError(msg || 'Failed to create account. Please try again.')
+      }
     } finally {
       setLoading(false)
     }
