@@ -397,18 +397,37 @@ create trigger update_cart_updated_at before update on public.cart
 create trigger update_reviews_updated_at before update on public.reviews
   for each row execute function update_updated_at_column();
 
--- Function to handle new user signup
+-- Function to handle new user signup (email + OAuth)
 create or replace function public.handle_new_user()
 returns trigger as $$
 begin
-  insert into public.profiles (id, full_name, email, phone, company)
+  insert into public.profiles (id, full_name, email, phone, company, avatar_url)
   values (
     new.id,
-    new.raw_user_meta_data->>'full_name',
+    coalesce(
+      new.raw_user_meta_data->>'full_name',
+      new.raw_user_meta_data->>'name',        -- Google OAuth sends 'name'
+      new.raw_user_meta_data->>'user_name',   -- GitHub OAuth sends 'user_name'
+      split_part(new.email, '@', 1)           -- fallback: use email prefix
+    ),
     new.email,
-    new.raw_user_meta_data->>'phone',
-    new.raw_user_meta_data->>'company'
-  );
+    new.raw_user_meta_data->>'phone',         -- null for OAuth users (that's fine)
+    new.raw_user_meta_data->>'company',       -- null for OAuth users (that's fine)
+    coalesce(
+      new.raw_user_meta_data->>'avatar_url',  -- Supabase normalized field
+      new.raw_user_meta_data->>'picture'      -- Google raw field
+    )
+  )
+  on conflict (id) do update set
+    full_name = coalesce(
+      excluded.full_name,
+      public.profiles.full_name
+    ),
+    avatar_url = coalesce(
+      excluded.avatar_url,
+      public.profiles.avatar_url
+    ),
+    updated_at = now();
   return new;
 end;
 $$ language plpgsql security definer;
