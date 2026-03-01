@@ -8,10 +8,17 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+env:
+  VERCEL_TOKEN: vcp_0qYLYnLpG2fPOsadJOlJ3byxyEZH2BpZpeVvP6dtAY
+  VERCEL_ORG_ID: ap312038-gmailcoms-projects
+
 jobs:
   deploy-main:
     name: Deploy – Main App
     runs-on: ubuntu-latest
+
+    env:
+      VERCEL_PROJECT_ID: prj_LBaEnYFyEhG7Asan0myUt9ppDe7m
 
     steps:
       - name: Checkout code
@@ -27,26 +34,20 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Pull Vercel environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
 
       - name: Build (via Vercel)
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel build --prod --token=${{ env.VERCEL_TOKEN }}
 
       - name: Deploy to production
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prebuilt --prod --token=${{ env.VERCEL_TOKEN }}
 
   deploy-admin:
     name: Deploy – Admin App
     runs-on: ubuntu-latest
+
+    env:
+      VERCEL_PROJECT_ID: prj_Em9d8MbuaTRbAhSUQBwQCM461NoK
 
     steps:
       - name: Checkout code
@@ -63,22 +64,14 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Pull Vercel environment (admin)
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
         working-directory: admin
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
 
       - name: Build (via Vercel)
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token=${{ env.VERCEL_TOKEN }}
         working-directory: admin
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
 
       - name: Deploy to production
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ env.VERCEL_TOKEN }}
         working-directory: admin
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+
