@@ -1,8 +1,29 @@
+# Prime Eagle - robots.txt
 # https://www.robotstxt.org/robotstxt.html
-User-agent: *
+
+# Allow Google full crawl access to public pages
+User-agent: Googlebot
+Allow: /
 Disallow: /dashboard
 Disallow: /login
 Disallow: /signup
-Allow: /
+Disallow: /api/
 
-Sitemap: https://primeeagle.com/sitemap.xml
+# Allow Bing full crawl access to public pages
+User-agent: Bingbot
+Allow: /
+Disallow: /dashboard
+Disallow: /login
+Disallow: /signup
+Disallow: /api/
+
+# Default rules for all other bots
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /login
+Disallow: /signup
+Disallow: /api/
+Crawl-delay: 10
+
+Sitemap: https://primeeagle.in/sitemap.xml
